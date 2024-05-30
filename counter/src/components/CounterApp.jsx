@@ -1,76 +1,91 @@
-import { useState } from 'react';
+import { Component } from 'react';
 
-function CounterApp() {
-  const [count, setCount] = useState(0);
-  const [incrementButtonStyle, setIncrementButtonStyle] = useState({});
-  const [decrementButtonStyle, setDecrementButtonStyle] = useState({});
-  const [resetButtonStyle, setResetButtonStyle] = useState({});
+class CounterApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+      incrementButtonStyle: {},
+      decrementButtonStyle: {},
+      resetButtonStyle: {}
+    };
+  }
 
-  const handleIncrement = () => {
-    setCount(count + 1);
+  handleIncrement = () => {
+    this.setState(prevState => ({ count: prevState.count + 1 }));
   };
 
-  const handleDecrement = () => {
-    setCount(count - 1);
+  handleDecrement = () => {
+    this.setState(prevState => ({ count: prevState.count - 1 }));
   };
 
-  const handleReset = () => {
-    setCount(0);
+  handleReset = () => {
+    this.setState({ count: 0 });
   };
 
-  const handleIncrementMouseEnter = () => {
-    setIncrementButtonStyle({ color: 'black' });
+  handleIncrementMouseEnter = () => {
+    this.setState({ incrementButtonStyle: { color: 'black' } });
   };
 
-  const handleIncrementMouseLeave = () => {
-    setIncrementButtonStyle({ color: '' });
+  handleIncrementMouseLeave = () => {
+    this.setState({ incrementButtonStyle: { color: '' } });
   };
 
-  const handleDecrementMouseEnter = () => {
-    setDecrementButtonStyle({ color: 'black' });
+  handleDecrementMouseEnter = () => {
+    this.setState({ decrementButtonStyle: { color: 'black' } });
   };
 
-  const handleDecrementMouseLeave = () => {
-    setDecrementButtonStyle({ color: '' });
+  handleDecrementMouseLeave = () => {
+    this.setState({ decrementButtonStyle: { color: '' } });
   };
 
-  const handleResetMouseEnter = () => {
-    setResetButtonStyle({ color: 'black' });
+  handleResetMouseEnter = () => {
+    this.setState({ resetButtonStyle: { color: 'black' } });
   };
 
-  const handleResetMouseLeave = () => {
-    setResetButtonStyle({ color: '' });
+  handleResetMouseLeave = () => {
+    this.setState({ resetButtonStyle: { color: '' } });
   };
 
-  return (
-    <div>
-      <h1>Counter App</h1>
-      <p>Count: {count}</p>
-      <button
-        onClick={handleIncrement}
-        onMouseEnter={handleIncrementMouseEnter}
-        onMouseLeave={handleIncrementMouseLeave}
-        style={incrementButtonStyle}
-      >
-        +
-      </button>
-      <button
-        onClick={handleDecrement}
-        onMouseEnter={handleDecrementMouseEnter}
-        onMouseLeave={handleDecrementMouseLeave}
-        style={decrementButtonStyle}
-      >
-        -
-      </button>
-      <button
-        onClick={handleReset}
-        onMouseEnter={handleResetMouseEnter}
-        onMouseLeave={handleResetMouseLeave}
-        style={resetButtonStyle}
-      >
-        Reset
-      </button>
-    </div>
-  );
+  render() {
+    const {
+      count,
+      incrementButtonStyle,
+      decrementButtonStyle,
+      resetButtonStyle
+    } = this.state;
+
+    return (
+      <div>
+        <h1>Counter App</h1>
+        <p>Count: {count}</p>
+        <button
+          onClick={this.handleIncrement}
+          onMouseEnter={this.handleIncrementMouseEnter}
+          onMouseLeave={this.handleIncrementMouseLeave}
+          style={incrementButtonStyle}
+        >
+          +
+        </button>
+        <button
+          onClick={this.handleDecrement}
+          onMouseEnter={this.handleDecrementMouseEnter}
+          onMouseLeave={this.handleDecrementMouseLeave}
+          style={decrementButtonStyle}
+        >
+          -
+        </button>
+        <button
+          onClick={this.handleReset}
+          onMouseEnter={this.handleResetMouseEnter}
+          onMouseLeave={this.handleResetMouseLeave}
+          style={resetButtonStyle}
+        >
+          Reset
+        </button>
+      </div>
+    );
+  }
 }
+
 export default CounterApp;
